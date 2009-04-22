@@ -1,0 +1,25 @@
+<h1>Listing actors</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Health</th>
+    <th>Initiative</th>
+  </tr>
+
+<% @actors.each do |actor| %>
+  <tr>
+    <td><%=h actor.name %></td>
+    <td><%=h actor.health %></td>
+    <td><%=h actor.initiative %></td>
+    <td><%= link_to 'Show', actor %></td>
+    <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
+    <td><%= link_to 'Destroy', actor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New actor', new_actor_path %> |
+<%= link_to 'Encounters', encounters_path %>

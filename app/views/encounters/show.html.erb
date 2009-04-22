@@ -1,0 +1,49 @@
+<p>
+  <b>Name:</b>
+  <%=h @encounter.name %>
+   -- 
+  <b>Experience:</b>
+  <%=h @encounter.experience %>
+</p>
+
+<b>Active Actor(s):</b>
+<table border="1" cellpadding="3">
+  <tr>
+    <th>Name</th>
+    <th>Current Health</th>
+    <th>Max Health</th>
+    <th>Initiative</th>
+  </tr>
+  <% @encounter.actors.select{|h| h.current_health.to_i > 0 }.each do |a| %>
+  <% @actor = a %>
+    <tr>
+      <td><%=h a.name %></td>
+      <td><%= in_place_editor_field(:actor, 'current_health') %></td>
+      <td><%=h a.health %></td>
+      <td><%= in_place_editor_field(:actor, 'initiative') %></td>
+    </tr>
+  <% end %>
+</table>
+<b>Inactive Actor(s):</b>
+<table border="1" cellpadding="3">
+  <tr>
+    <th>Name</th>
+    <th>Current Health</th>
+    <th>Max Health</th>
+    <th>Initiative</th>
+  </tr>
+  <% @encounter.actors.select{|h| h.current_health.to_i <= 0 }.each do |a| %>
+  <% @actor = a %>
+    <tr>
+      <td><%=h a.name %></td>
+      <td><%= in_place_editor_field(:actor, 'current_health') %></td>
+      <td><%=h a.health %></td>
+      <td><%=h a.initiative %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Actors', actors_path %> |
+<%= link_to 'Encounters', encounters_path %> |
+<%= link_to 'Edit', edit_encounter_path(@encounter) %> |
+<%= link_to 'Reset', reset_encounter_path, :confirm => "This will reset all actors!" %>

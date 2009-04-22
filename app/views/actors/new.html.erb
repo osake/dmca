@@ -1,0 +1,23 @@
+<h1>New actor</h1>
+
+<% form_for(@actor) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :health %><br />
+    <%= f.text_field :health %>
+  </p>
+  <p>
+    <%= f.label :initiative %><br />
+    <%= f.text_field :initiative %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', actors_path %>

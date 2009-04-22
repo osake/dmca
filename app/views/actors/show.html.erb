@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @actor.name %>
+</p>
+
+<p>
+  <b>Health:</b>
+  <%=h @actor.health %>
+</p>
+
+<p>
+  <b>Initiative:</b>
+  <%=h @actor.initiative %>
+</p>
+
+<%= link_to 'Encounters', encounters_path %> |
+<%= link_to 'Edit', edit_actor_path(@actor) %> |
+<%= link_to 'Back', actors_path %>

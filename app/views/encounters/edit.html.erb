@@ -1,0 +1,48 @@
+<h1>Editing encounter</h1>
+
+<% form_for(@encounter) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :experience %><br />
+    <%= f.text_field :experience %>
+  </p>
+  <!-- <p>
+    <%#= f.label :actor_id %><br />
+    <%#= f.text_field :actor_id %>
+  </p> -->
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+
+<h3>Participating Actors</h3>
+<p id="actors">
+  <% if !@encounter.actors.blank? %>
+    <% for actor in @encounter.actors %>
+      <%= check_box_tag "remove_actor_#{actor.id}", "#{actor.id}" %>
+      <%= actor.name %>
+    <% end %>
+  <% else %>
+    No Actors In Encounter
+  <% end %>
+</p>
+
+<h3>Available Actors</h3>
+<p>
+  <% if !@actors.blank? %>
+    <% for actor in @actors %>
+      <%= check_box_tag "add_actor_#{actor.id}", "#{actor.id}" %>
+      <%= actor.name %>
+    <% end %>
+  <% else %>
+    No Available Actors
+  <% end %>
+</p>
+<% end %>
+
+<%= link_to 'Show', @encounter %> |
+<%= link_to 'Back', encounters_path %>
